@@ -1,6 +1,20 @@
 type Direction = 'N' | 'S' | 'E' | 'W';
 export type Command = 'f' | 'b' | 'l' | 'r';
 
+const RIGHT_TURNS: Record<Direction, Direction> = {
+    'N': 'E',
+    'E': 'S',
+    'S': 'W',
+    'W': 'N'
+};
+
+const LEFT_TURNS: Record<Direction, Direction> = {
+    'N': 'W',
+    'W': 'S',
+    'S': 'E',
+    'E': 'N'
+};
+
 export class Rover {
     private x: number;
     private y: number;
@@ -76,28 +90,11 @@ export class Rover {
     }
 
     private turnRight(): void {
-        if (this.direction === 'N') {
-            this.direction = 'E';
-        }
-        else if (this.direction === 'E') {
-            this.direction = 'S';
-        } else if (this.direction === 'S') {
-            this.direction = 'W';
-        } else if (this.direction === 'W') {
-            this.direction = 'N';
-        }
+        this.direction = RIGHT_TURNS[this.direction];
     }
 
     private turnLeft(): void {
-        if (this.direction === 'N') {
-            this.direction = 'W';
-        } else if (this.direction === 'W') {
-            this.direction = 'S';
-        } else if (this.direction === 'S') {
-            this.direction = 'E';
-        } else if (this.direction === 'E') {
-            this.direction = 'N';
-        }
+        this.direction = LEFT_TURNS[this.direction];
     }
 
 }

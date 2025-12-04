@@ -1,8 +1,7 @@
 import { expect } from "@jest/globals"
 import { Rover, type Command } from "./some_kata"
-import exp from "constants";
 
-describe("Some kata", () => {
+describe("Rover setup", () => {
   it("has initial position and direction", () => {
     const rover = new Rover(1, 2, "N");
 
@@ -10,8 +9,10 @@ describe("Some kata", () => {
     expect(rover.getY()).toBe(2);
     expect(rover.getDirection()).toBe("N");
   });
+});
 
-  it("move forward", () => {
+describe("Rover move forward", () => {
+  it("increases y when facing North", () => {
     const rover = new Rover(0, 0, "N");
 
     rover.execute('f');
@@ -47,7 +48,9 @@ describe("Some kata", () => {
     expect(rover.getX()).toBe(1);
     expect(rover.getY()).toBe(0);
   });
+});
 
+describe("Rover move backward", () => {
   it("decreases y when facing North and moving backward", () => {
     const rover = new Rover(0, 2, "N");
 
@@ -83,8 +86,9 @@ describe("Some kata", () => {
     expect(rover.getX()).toBe(1);
     expect(rover.getY()).toBe(0);
   });
+});
 
-  describe('turn right', () => {
+describe('Rover turn right', () => {
     it("faces East when turning right from North", () => {
       const rover = new Rover(0, 0, 'N');
 
@@ -124,9 +128,9 @@ describe("Some kata", () => {
       expect(rover.getY()).toBe(0);
       expect(rover.getDirection()).toBe('N');
     });
-  });
+});
 
-  describe('turn left', () => {
+describe('Rover turn left', () => {
     it("faces West when turning left from North", () => {
       const rover = new Rover(0, 0, 'N');
 
@@ -180,8 +184,4 @@ describe("Some kata", () => {
       expect(rover.getY()).toBe(2);
       expect(rover.getDirection()).toBe('E');
     });
-
-
-  })
-  
-})
+  });
